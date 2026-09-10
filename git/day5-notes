@@ -1,0 +1,149 @@
+********************************************************************************
+DAY-5
+********************************************************************************
+
+what triggers a ci/cd pipeline?
+
+it could be triggered merely by a pull or push request.
+ 
+***************
+
+Git - a version control system tool - runs on local machine track changes to the code.
+
+GitHub - its a hosting and collaboration built around git repositories.
+
+other ex - GitLab, Bitbucket
+
+Working Directory (creating/making changes to file app.py)
+       ↓
+   git add ( git add app.py → puts the changes to staging area)
+       ↓
+Staging Area
+       ↓
+  git commit ( git commit -m "Update App" → stores changes in local git repo)
+       ↓
+Local Repository
+       ↓
+   git push ( git push → sends the commit to remote repo)
+       ↓
+Remote Repository
+
+*********************
+
+git status → displays branch you are currently on and files that have and haven't been added to staging area.
+
+git branch → lists all the local branches, with * on the branch you are working on.
+
+
+git log --oneline → shows previous commits
+
+********************
+
+git status
+git add
+git commit
+git push
+git pull
+git log
+git branch
+git switch
+git merge
+git fetch
+
+*********************
+
+git clone <repo URL> → used to download an existing remote repository.
+
+git fetch → downloads remote changes without modifying my current branch.
+
+git merge <branch> →  It simply takes the history and code from one local branch (like feature/day5-git) and blends it directly into your current local branch (like main)
+
+git pull → fetches remote changes and then integrates those changes into my current branch
+basically, git fetch + git merge.
+
+git switch -c feature/day5-git → create a new branch and immediately switch to it.
+
+git push -u origin feature/day5-git → uploads the local branch to the remote repo and links the branch to you main/origin branch
+
+git switch main → let us moves out of current branch and switches the active working environment back to the main branch.
+
+good practice to run "git pull" after every "git switch main" to integrate any changes made by others to the remote repo.
+
+git log --oneline --graph --all - displays the branch history--in graphical way.
+
+
+***********************
+Pull Requests - formal request to "pull" your code changes into the main
+codebase.
+
+Dev - creates feature branch - make changes - commit - push - PR request
+- PR Review - CI Tests - Approval  - Merge - CI/CD
+
+
+MERGE CONFLICTS - happens when Git gets confused about which code to keep because two different changes were made to the exact same line of the same file.
+
+TO FIX :
+
+git status
+
+git add <file-u-want-to-keep>
+
+git commit -m "fix merge conflict"
+
+***********************
+
+.gitignore - Any file listed inside a .gitignore text file will not be tracked by Git, will not show up when you type git status.
+
+**********************
+
+GIT revert vs reset
+
+git revert <Commit ID> →  git revert creates a new commit that reverses a previous commit.
+
+Use git revert for shared public branches (like main on GitHub)
+
+git reset → It moves your active branch pointer back to a previous commit, completing erasing the newer commit.
+
+git reset --soft <commit-id> : Rewinds history but keeps your code changes sitting in your staging area. Best for re-doing a commit message.
+
+git reset --mixed <commit-id> (Default): Rewinds history, keeps your code changes, but un-stages them.
+
+git reset --hard <commit-id> : Rewinds history and destroys all code changes made after that point. Your project folder resets completely.
+
+*****************
+
+git reflog → records every single action you take in your repository,
+which can help you locate commits and thier ids that are no longer visible through the normal branch history - helps in receovery
+
+***************
+
+A Git tag is a permanent bookmark that points to a specific commit in your history.
+
+git tag → lists all tags
+
+git tag V1.0.0 → creates a tag
+
+git show v1.0.0 → shows details of specific tag
+
+git push origin v1.0.0 → push a specific tag
+
+git push origin --tags → Push all local tags at once
+
+*****************
+
+GIT SSH AUTHENTICATION
+
+Git SSH (Secure Shell) authentication is a secure method of connecting your computer to remote repositories (like GitHub) using a matching pair of cryptographic keys.
+
+git ssh -t ed25519 -C "my-email" → prompts us to create a key pair. a private key and a public key
+
+private key - local to system
+pubic key - shared to the remote repo
+
+cat ~/.ssh/id_ed25519.pub → displays public key
+ 
+
+*******************
+
+git diff → shows changes that are not yet staged
+
